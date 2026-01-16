@@ -40,7 +40,7 @@ const Home = () => {
 
   // ⚠️ API Key (you said you want it inside the file)
   const ai = new GoogleGenAI({
-    apiKey: "YOUR_API_KEY"
+    apiKey: "AIzaSyAOL8stZhDQHlo--kHBjVxXnC1NS1Gt6Tk"
   });
 
   // ✅ Generate code
@@ -103,6 +103,17 @@ Requirements:
     link.click();
     URL.revokeObjectURL(url);
     toast.success("File downloaded");
+  };
+
+  // ✅ Open code in new tab
+  const openInNewTab = () => {
+    if (!code.trim()) return toast.error("No code to open");
+    const newWindow = window.open();
+    if (newWindow) {
+      newWindow.document.write(code);
+      newWindow.document.close();
+      toast.success("Opened in new tab");
+    }
   };
 
   return (
@@ -206,13 +217,13 @@ Requirements:
                   <div className="flex items-center gap-2">
                     {tab === 1 ? (
                       <>
-                        <button onClick={copyCode} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333]"><IoCopy /></button>
-                        <button onClick={downnloadFile} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333]"><PiExportBold /></button>
+                        <button onClick={copyCode} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333] transition-all" title="Copy Code"><IoCopy /></button>
+                        <button onClick={downnloadFile} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333] transition-all" title="Download"><PiExportBold /></button>
                       </>
                     ) : (
                       <>
-                        <button onClick={() => setIsNewTabOpen(true)} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333]"><ImNewTab /></button>
-                        <button onClick={() => setRefreshKey(prev => prev + 1)} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333]"><FiRefreshCcw /></button>
+                        <button onClick={openInNewTab} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333] transition-all" title="Open in New Tab"><ImNewTab /></button>
+                        <button onClick={() => setRefreshKey(prev => prev + 1)} className="w-10 h-10 rounded-xl border border-zinc-800 flex items-center justify-center hover:bg-[#333] transition-all" title="Refresh"><FiRefreshCcw /></button>
                       </>
                     )}
                   </div>

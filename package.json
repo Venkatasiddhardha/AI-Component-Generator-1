@@ -1,7 +1,9 @@
 {
   "name": "ai-com-gen",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "AI-powered component generator that helps developers create reusable UI components instantly using modern React and Vite.",
+  "author": "Venkata Siddhardha Morla",
   "type": "module",
   "scripts": {
     "dev": "vite",
